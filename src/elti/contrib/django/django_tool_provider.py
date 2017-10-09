@@ -1,5 +1,5 @@
 
-from lti import ToolProvider
+from elti import ToolProvider
 from django.shortcuts import redirect
 
 
