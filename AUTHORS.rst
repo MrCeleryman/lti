@@ -1,7 +1,13 @@
 This project is the iterative work of several people,
 under several different project names.
 
-The current core contributors are:
+The (((maintainer))) of this fork is:
+
+* Nicholas Achilles `@captainachilles`_
+.. _`@captainachilles`: https://github.com/CaptainAchilles
+
+
+CaptainAchilles forked this project from the better maintained project: `lti`:
 
 * Ryan Hiebert `@ryanhiebert`_
 * Jay Luker `@lbjay`_
