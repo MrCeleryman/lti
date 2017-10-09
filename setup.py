@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='e-lti',
-    version='0.9.4',
+    version='0.9.5',
     description='A python library for building and/or consuming LTI apps. Forked from https://github.com/pylti/lti',
     long_description=open('README.rst', 'rb').read().decode('utf-8'),
     maintainer='Nicholas Achilles',
