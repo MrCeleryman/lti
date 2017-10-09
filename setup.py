@@ -2,9 +2,9 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='lti',
+    name='e-lti',
     version='0.9.3',
-    description='A python library for building and/or consuming LTI apps',
+    description='A python library for building and/or consuming LTI apps. Forked from https://github.com/pylti/lti',
     long_description=open('README.rst', 'rb').read().decode('utf-8'),
     maintainer='Nicholas Achilles',
     maintainer_email='nich@nich.tech',

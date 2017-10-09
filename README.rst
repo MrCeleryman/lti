@@ -1,20 +1,9 @@
 ====================================
 lti: Learning Tools Interoperability
 ====================================
-
-.. image:: https://travis-ci.org/pylti/lti.svg?branch=master
-   :target: https://travis-ci.org/pylti/lti
-
-.. image:: https://codecov.io/gh/pylti/lti/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/pylti/lti
-
-.. image:: https://badges.gitter.im/pylti/lti.svg
-   :alt: Join the chat at https://gitter.im/pylti/lti
-   :target: https://gitter.im/pylti/lti?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-
-.. image:: https://requires.io/github/pylti/lti/requirements.svg?branch=master
-   :target: https://requires.io/github/pylti/lti/requirements/?branch=master
-   :alt: Requirements Status
+This library is a fork of lti_lti_py_
+It has been modified to accept non-standard params and bubble up useful
+error messages in the form of exceptions to the caller. 
 
 ``lti`` is a Python library implementing the
 Learning Tools Interperability (LTI) standard.
