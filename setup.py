@@ -3,12 +3,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='lti',
-    version='0.9.2',
+    version='0.9.3',
     description='A python library for building and/or consuming LTI apps',
     long_description=open('README.rst', 'rb').read().decode('utf-8'),
-    maintainer='Ryan Hiebert',
-    maintainer_email='ryan@ryanhiebert.com',
-    url='https://github.com/pylti/lti',
+    maintainer='Nicholas Achilles',
+    maintainer_email='nich@nich.tech',
+    url='https://github.com/CaptainAchilles/lti',
     package_dir={'': 'src'},
     packages=find_packages('src'),
     install_requires=[
