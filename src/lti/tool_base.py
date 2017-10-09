@@ -21,9 +21,6 @@ class ToolBase(object):
             self.launch_params = LaunchParams(params)
 
     def __getattr__(self, attr):
-        if not valid_param(attr):
-            raise AttributeError(
-                "{} is not a valid launch param attribute".format(attr))
         try:
             return self.launch_params[attr]
         except KeyError:
@@ -37,7 +34,7 @@ class ToolBase(object):
 
     def has_role(self, role):
         return self.launch_params.get('roles') and any(
-               x.lower() == role.lower() for x in self.launch_params['roles'])
+            x.lower() == role.lower() for x in self.launch_params['roles'])
 
     def is_student(self):
         return any(self.has_role(x) for x in ROLES_STUDENT)

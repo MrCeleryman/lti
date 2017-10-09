@@ -10,6 +10,7 @@ def create_tb(key=None, secret=None, lp=None):
     lp = lp or LaunchParams()
     return ToolBase(key, secret, lp)
 
+
 class TestToolBase(unittest.TestCase):
 
     def test_constructor(self):
@@ -31,10 +32,6 @@ class TestToolBase(unittest.TestCase):
         resource_link_id = generate_token()
         tb = create_tb(lp={'resource_link_id': resource_link_id})
         self.assertEqual(tb.resource_link_id, resource_link_id)
-
-        # should raise AttributeError for attributes that are not valid params
-        with self.assertRaises(AttributeError) as cm:
-            foo = tb.foo
 
         # otherwise return None
         self.assertIsNone(tb.context_id)

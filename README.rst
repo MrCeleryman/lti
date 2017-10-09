@@ -100,7 +100,7 @@ Tool Provider OAuth Request Validation Example (Django)
 
     from lti.contrib.django import DjangoToolProvider
     from my_app import RequestValidator
-
+    from oauthlib.oauth1 import SignatureOnlyEndpoint
 
     # create the tool provider instance
     tool_provider = DjangoToolProvider.from_django_request(request=request)
@@ -112,7 +112,7 @@ Tool Provider OAuth Request Validation Example (Django)
     validator = RequestValidator()
 
     # validate the oauth request signature
-    ok = tool_provider.is_valid_request(validator)
+    ok = tool_provider.is_valid_request(SignatureOnlyEndpoint, validator)
 
     # do stuff if ok / not ok
 

@@ -2,7 +2,7 @@ from .utils import InvalidLTIRequestError
 from .launch_params import LaunchParams
 from .tool_base import ToolBase
 
-from oauthlib.oauth1 import SignatureOnlyEndpoint
+
 from oauthlib.oauth1.rfc5849 import CONTENT_TYPE_FORM_URLENCODED
 from requests.structures import CaseInsensitiveDict
 
@@ -46,9 +46,9 @@ class ToolProvider(ToolBase):
         if 'Content-Type' not in self.launch_headers:
             self.launch_headers['Content-Type'] = CONTENT_TYPE_FORM_URLENCODED
 
-    def is_valid_request(self, validator):
-        validator = ProxyValidator(validator)
-        endpoint = SignatureOnlyEndpoint(validator)
+    def is_valid_request(self, endpoint_class, validator_instance):
+        validator = ProxyValidator(validator_instance)
+        endpoint = endpoint_class(validator)
 
         valid, request = endpoint.validate_request(
             self.launch_url,

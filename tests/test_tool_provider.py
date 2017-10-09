@@ -15,6 +15,7 @@ from lti import LaunchParams, OutcomeRequest, ToolProvider
 from lti.utils import parse_qs, InvalidLTIConfigError
 from lti.tool_provider import ProxyValidator
 
+
 def create_tp(key=None, secret=None, lp=None, launch_url=None,
               launch_headers=None, tp_class=ToolProvider):
     key = key or generate_client_id()
@@ -25,6 +26,7 @@ def create_tp(key=None, secret=None, lp=None, launch_url=None,
     launch_url = launch_url or "http://example.edu"
     launch_headers = launch_headers or {}
     return tp_class(key, secret, launch_params, launch_url, launch_headers)
+
 
 class TestToolProvider(unittest.TestCase):
 
@@ -52,7 +54,7 @@ class TestToolProvider(unittest.TestCase):
 
         with patch.object(SignatureOnlyEndpoint, 'validate_request') as mv:
             mv.return_value = True, None  # Tuple of valid, request
-            self.assertTrue(tp.is_valid_request(Mock()))
+            self.assertTrue(tp.is_valid_request(SignatureOnlyEndpoint, Mock()))
             call_url, call_method, call_params, call_headers = mv.call_args[0]
             self.assertEqual(call_url, launch_url)
             self.assertEqual(call_method, 'POST')
@@ -81,12 +83,15 @@ class TestToolProvider(unittest.TestCase):
 
         class TpValidator(RequestValidator):
             dummy_client = ''
+
             def validate_timestamp_and_nonce(self, timestamp, nonce, request,
                                              request_token=None,
                                              access_token=None):
                 return True
+
             def validate_client_key(self, client_key, request):
                 return True
+
             def get_client_secret(self, client_key, request):
                 return secret_
             secret = secret_  # Fool the ProxyValidator
@@ -97,7 +102,8 @@ class TestToolProvider(unittest.TestCase):
         SOE = SignatureOnlyEndpoint
         with patch.object(SOE, '_check_mandatory_parameters'):
             with patch.object(SOE, '_check_signature', return_value=True):
-                self.assertTrue(tp.is_valid_request(TpValidator()))
+                self.assertTrue(tp.is_valid_request(
+                    SOE, TpValidator()))
 
         self.assertEqual(tp.consumer_key, key)
         self.assertEqual(tp.consumer_secret, secret_)
@@ -202,7 +208,6 @@ class TestToolProvider(unittest.TestCase):
         self.assertRaises(InvalidLTIConfigError, tp.new_request, {'foo': 1})
         self.assertEqual(len(tp.outcome_requests), 3)
 
-
     def test_last_outcome_success(self):
         tp = create_tp()
         mock = Mock()
@@ -212,8 +217,9 @@ class TestToolProvider(unittest.TestCase):
 
     def test_last_outcome_request(self):
         tp = create_tp()
-        tp.outcome_requests = ['foo','bar']
+        tp.outcome_requests = ['foo', 'bar']
         self.assertEqual(tp.last_outcome_request(), 'bar')
+
 
 # mock the django.shortcuts import to allow testing
 mock = Mock()
@@ -222,6 +228,7 @@ mock_modules = {
     'django': mock,
     'django.shortcuts': mock.shortcuts
 }
+
 
 class TestDjangoToolProvider(unittest.TestCase):
 
@@ -285,6 +292,7 @@ class TestDjangoToolProvider(unittest.TestCase):
             'lti_errormsg': 'abcd',
             'lti_errorlog': 'efgh'
         })
+
 
 class TestFlaskToolProvider(unittest.TestCase):
 

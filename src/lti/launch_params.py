@@ -158,11 +158,6 @@ class LaunchParams(MutableMapping):
         self._params = dict()
         self.update(*args, **kwargs)
 
-        # now verify we only got valid launch params
-        for k in self.keys():
-            if not valid_param(k):
-                raise InvalidLaunchParamError(k)
-
         # enforce some defaults
         if 'lti_version' not in self:
             self['lti_version'] = DEFAULT_LTI_VERSION
@@ -185,8 +180,6 @@ class LaunchParams(MutableMapping):
         return len(self._params)
 
     def __getitem__(self, item):
-        if not valid_param(item):
-            raise KeyError("{} is not a valid launch param".format(item))
         try:
             return self._param_value(item)
         except KeyError:
@@ -194,8 +187,6 @@ class LaunchParams(MutableMapping):
             raise KeyError(item)
 
     def __setitem__(self, key, value):
-        if not valid_param(key):
-            raise InvalidLaunchParamError(key)
         if key in LAUNCH_PARAMS_IS_LIST:
             if isinstance(value, list):
                 value = ','.join([x.strip() for x in value])
