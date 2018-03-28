@@ -3,11 +3,15 @@ under several different project names.
 
 The (((maintainer))) of this fork is:
 
-* Nicholas Achilles `@captainachilles`_
-.. _`@captainachilles`: https://github.com/CaptainAchilles
-
+* Daniel Mitchell `@mrceleryman`_
+.. _`@captainachilles`: https://github.com/MrCeleryman
 
 CaptainAchilles forked this project from the better maintained project: `lti`:
+
+The (((maintainer))) of this fork is:
+
+* Nicholas Achilles `@captainachilles`_
+.. _`@captainachilles`: https://github.com/CaptainAchilles
 
 * Ryan Hiebert `@ryanhiebert`_
 * Jay Luker `@lbjay`_
