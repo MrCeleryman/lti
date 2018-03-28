@@ -4,7 +4,7 @@ under several different project names.
 The (((maintainer))) of this fork is:
 
 * Daniel Mitchell `@mrceleryman`_
-.. _`@captainachilles`: https://github.com/MrCeleryman
+.. _`@mrceleryman`: https://github.com/MrCeleryman
 
 CaptainAchilles forked this project from the better maintained project: `lti`:
 
